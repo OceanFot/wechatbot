@@ -61,8 +61,8 @@ export class ChatBot {
   privateChatTrigger: string = Config.privateChatTrigger;
   groupChatTrigger: string = Config.groupChatTrigger;
   groupChatTriggerRegex: RegExp = this.groupChatTrigger ?
-      new RegExp(`^(@${this.botName}\\s+)?${this.groupChatTrigger}`):
-      new RegExp(`^@${this.botName}`);
+      new RegExp(`(^@${this.botName})|(^${this.groupChatTrigger})|(@${this.botName}.?$)`):
+      new RegExp(`(^@${this.botName})|(@${this.botName}.?$)`);
 
   // message size for a single reply by the bot
   SINGLE_MESSAGE_MAX_SIZE: number = 500;
@@ -79,8 +79,8 @@ export class ChatBot {
   setBotName(botName: string) {
     this.botName = botName;
     this.groupChatTriggerRegex = this.groupChatTrigger ?
-        new RegExp(`^(@${this.botName}\\s+)?${this.groupChatTrigger}`):
-        new RegExp(`^@${this.botName}`);
+        new RegExp(`(^@${this.botName})|(^${this.groupChatTrigger})|(@${this.botName}.?$)`):
+        new RegExp(`(^@${this.botName})|(@${this.botName}.?$)`);
   }
 
   private static constructResponseData(result: string, message: string): ResponseData {
